@@ -1,0 +1,27 @@
+CREATE TABLE IF NOT EXISTS users
+(
+    id    BIGSERIAL PRIMARY KEY ,
+    name  VARCHAR(200) NOT NULL ,
+    email VARCHAR(254) NOT NULL ,
+    password VARCHAR(254) NOT NULL ,
+    phone VARCHAR(50)  NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS tasks
+(
+    id BIGSERIAL PRIMARY KEY ,
+    name VARCHAR(200) NOT NULL ,
+    description TEXT NOT NULL ,
+    producer BIGINT NOT NULL ,
+    state VARCHAR(20) NOT NULL DEFAULT 'OPEN',
+    start_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    end_date TIMESTAMP WITH TIME ZONE DEFAULT null,
+    executor BIGINT,
+    FOREIGN KEY (producer)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON DELETE CASCADE ,
+    FOREIGN KEY (executor)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON DELETE SET NULL
+)
+-- DROP TABLE IF EXISTS users
