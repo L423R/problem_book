@@ -11,7 +11,7 @@ import ru.ma3x.rest.services.UserService;
 import java.util.Collections;
 import java.util.List;
 
-
+@Component
 public class PostgresUserDetailsService implements UserDetailsService {
     private final UserService userService;
 

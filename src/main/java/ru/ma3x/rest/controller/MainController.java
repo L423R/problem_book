@@ -38,7 +38,7 @@ public class MainController {
         return getMessage(id);
     }
 
-    private Map<String, String> getMessage(@PathVariable String id) {
+    private Map<String, String> getMessage(String id) {
         return messages.stream()
                 .filter(message -> message.get("id").equals(id))
                 .findFirst()
